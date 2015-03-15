@@ -68,6 +68,11 @@
 
 //Other Mixins for general styling
 
+@mixin vectores{
+	fill:$negro;
+	stroke-width:1
+}
+
 @mixin boxShadow($val){
 	-webkit-box-shadow: $val;
 	-moz-box-shadow: $val;
