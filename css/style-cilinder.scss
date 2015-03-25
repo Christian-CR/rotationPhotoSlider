@@ -1,0 +1,185 @@
+@import 'basic';
+/*variables*/
+/*colour lovers Palete*/
+$lightGrass: #E6F2B0;
+$lightLeave: #B2E4A5;
+$greenSon: #8DDAA6;
+$greenGrass: #5CA490;
+$darkTea: #4E5F57;
+
+$circle: 400; /* this is the diameter */
+$ratio: $circle / 2;
+$pi: 3.1415;
+$circumference: 2 * $pi * $ratio;
+$number-of-pics: 8; /* amout of pics */
+$picwidth: $circumference / $number-of-pics * 2;
+$degs: 360 / $number-of-pics;
+
+html,body{ width: 100%; height: 100%; }
+
+#sliderWrapper{
+	width: 100%;
+	height:100%;
+	@include perspective(500px);
+	@include perspectiveOrigin( 50% 50% );
+	background: $lightGrass;
+}
+
+.lotr{
+
+}
+
+@keyframes rotateSlider{
+		0%{
+			@include transform( translateZ(-400px) rotateY(0deg) rotateX(-30deg) );
+		}
+		100%{
+			@include transform( translateZ(-400px) rotateY(360deg) rotateX(-30deg) );
+		}
+	}
+
+@-webkit-keyframes rotateSlider{
+		0%{
+			@include transform(  translateZ(-400px) rotateY(0deg) rotateX(-30deg) );
+		}
+		100%{
+			@include transform( translateZ(-400px) rotateY(360deg) rotateX(-30deg) );
+		}
+	}
+
+#ring01, #ring02{
+	width: $circle +px;
+	height: 200px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-left:-200px;
+	margin-top: -200px;
+	opacity:1;
+	@include transformStyle();
+	@include transformOrigin( 50% 0% 0px );
+	@include animation( rotateSlider 8s infinite linear );
+}
+
+#ring01{
+	left:50%;
+	top:40%;
+}
+
+#ring02{
+	left:50%;
+	top:70%;
+}
+
+#sliderBox{
+	width: 100%;
+	height:100%;
+	@include perspective(500px);
+	@include perspectiveOrigin( 50% 50% );
+	background: $lightGrass;
+}
+
+div#sliderBox:hover{
+-webkit-animation-play-state: paused;
+}
+
+#sliderBox #ring01 > div, #sliderBox #ring02 > div{
+	transform-style: preserve-3d;
+	border-top:1px solid $greenSon;
+	width: 100%;
+	height: 100%;
+	@include boxSizing;
+	@include transformOrigin ( 0px 0px 0px );
+	position: absolute;
+	opacity:1;
+}
+
+#sliderBox #ring01 > div > div, #sliderBox #ring02 > div > div{
+	position: relative;
+	width: $picwidth +px;
+	height: 200px;
+	cursor:pointer;
+	border: solid $greenGrass 3px;
+	boxSizing: border-box;
+	@include transform( translateX($circle +px) translateZ($picwidth / 2 +px) rotateY(90deg) rotateX(0deg) );
+	@include transformOrigin ( 0px 0px 0px );
+}
+
+#sliderBox > div > div:hover{
+	border:solid white 3px;
+}
+#sliderBox > div > div:focus{
+	animation: stop;
+}
+
+#s1img, #s2img, #s3img, #s4img, #s5img, #s6img, #s7img, #s8img{
+	@include background( cover );
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#s1{
+	@include transform( translate(200px) rotateY(0deg) );
+	#s1img{
+		position:absolute;
+		background: url('../images/slide01.jpg');
+	}
+}
+
+#s2{
+	@include transform( translate(200px) rotateY($degs +deg) );
+	#s2img{
+		position:absolute;
+		background: url('../images/slide02.jpg');
+	}
+}
+
+#s3{
+	@include transform( translate(200px) rotateY($degs * 2 +deg) );
+	#s3img{
+		position:absolute;
+		background: url('../images/slide03.jpg');
+	}
+}
+
+#s4{
+	@include transform( translate(200px) rotateY($degs * 3 +deg) );
+	#s4img{
+		position:absolute;
+		background: url('../images/slide04.jpg');
+	}
+}
+
+#s5{
+	@include transform( translate(200px) rotateY($degs * 4+deg) );
+	#s5img{
+		position:absolute;
+		background: url('../images/slide05.jpg');
+	}
+}
+
+#s6{
+	@include transform( translate(200px) rotateY($degs * 5 +deg) );
+	#s6img{
+		position:absolute;
+		background: url('../images/slide06.jpg');
+	}
+}
+
+#s7{
+	@include transform( translate(200px) rotateY($degs * 6 +deg) );
+	#s7img{
+		position:absolute;
+		background: url('../images/slide07.jpg');
+	}
+}
+
+#s8{
+	@include transform( translate(200px) rotateY($degs * 7 +deg) );
+	#s8img{
+		position:absolute;
+		background: url('../images/slide08.jpg');
+	}
+}
+
+
